@@ -1,8 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 // import '../App.css';
 // import rockGlass from '../images/rockGlass.svg';
 
 export default function Login() {
+  const history = useHistory();
   // const [errorMessage, setErrorMessage] = useState(false);
 
   return (
@@ -12,6 +14,7 @@ export default function Login() {
           Login:
           {' '}
           <input
+            id="login"
             data-testid="common_login__input-email"
             type="text"
           />
@@ -34,6 +37,7 @@ export default function Login() {
         <button
           data-testid="common_login__button-register"
           type="button"
+          onClick={ () => history.push('/register') }
         >
           Ainda não tenho conta
         </button>
