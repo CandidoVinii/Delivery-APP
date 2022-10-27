@@ -401,7 +401,7 @@ describe(requirement(1), () => {
 
   ## Construção do Front-end
 
-  - Utilize esse [protótipo](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1) para se guiar na construção do front-end. Esse arquivo é comentado com os nomes de cada elemento.
+  - Utilize esse [protótipo](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1) para se guiar na construção do front-end. Esse arquivo é comentado com os nomes de cada elemento.
 
   ⚠️**Importante**: é necessário ter feito login no `figma` para visualizar o protótipo. Para ver os comentários sobre cada componente, basta clicar no ícone de comentários no Figma (lado esquerdo superior), conforme a imagem abaixo:
 
@@ -413,7 +413,7 @@ describe(requirement(1), () => {
 
   ## Componentização
 
-  O nosso [protótipo](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1) possui um conjunto de **componentes base**. Isso é proposital e sugere que é fundamental que vocês componentizem o front-end de maneira que seja possível fazer o maior reaproveitamento possível de cada estrutura. 
+  O nosso [protótipo](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1) possui um conjunto de **componentes base**. Isso é proposital e sugere que é fundamental que vocês componentizem o front-end de maneira que seja possível fazer o maior reaproveitamento possível de cada estrutura. 
 
   É bom lembrar que **um front-end em React com pouca componentização gera muita manutenção no tempo e atrasa a entrega**. Aqui, é aconselhável pensar utilizando um [modelo atômico](https://brasil.uxdesign.cc/atomic-design-redesenhando-os-entreg%C3%A1veis-de-designers-e-desenvolvedores-da8886c7258d) de desenvolvimento.
 
@@ -500,7 +500,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Se oriente pela seguinte tela do protótipo: [`Comum / Login`](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1);
+- Se oriente pela seguinte tela do protótipo: [`Comum / Login`](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1);
 
 <details>
   <summary>
@@ -609,7 +609,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Se oriente pela seguinte tela do protótipo: [`Comum / Cadastro`](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1);
+- Se oriente pela seguinte tela do protótipo: [`Comum / Cadastro`](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1);
 
 <details>
   <summary>
@@ -708,7 +708,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Se oriente pela seguinte tela do protótipo: [`Comum / Produtos`](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1);
+- Se oriente pela seguinte tela do protótipo: [`Comum / Produtos`](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1);
 
 <details>
   <summary>
@@ -729,7 +729,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Se oriente pela seguinte tela do protótipo: [`Comum / Produtos`](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1);
+- Se oriente pela seguinte tela do protótipo: [`Comum / Produtos`](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1);
 - Deve-se construir um total de `11` cards, cada um correspondente a um item da tabela produtos, conforme a tabela `products` do modelo em `db.example.sql`.
 - Os `data-testid` desses itens devem terminar com o id de cada produto, exemplo: 
   - `customer_products__element-card-price-1`; `customer_products__element-card-price-2`; ...; `customer_products__element-card-price-11`.
@@ -868,7 +868,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Se oriente pela seguinte tela do protótipo: [`Comum / Checkout`](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1);
+- Se oriente pela seguinte tela do protótipo: [`Comum / Checkout`](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1);
 - A quantidade de itens no checkout deve corresponder à quantidade de itens no recorte aleatório de produtos utilizados no teste;
 - Aqui, a referência de identificação dos campos das linhas da tabela deve ser o índice (`index`) da matriz (`array`) dos produtos no carrinho de compras. Por exemplo:
   - `element-order-table-name-0`; `element-order-table-name-1`; ...; `element-order-table-name-x`.
@@ -955,7 +955,7 @@ Todos os testes desse arquivo:
 
 - Os testes farão a inserção da venda via checkout e após isso farão a validação desses dados no banco de dados.
 
-- Atente-se que, no [protótipo](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1), a tela `Cliente / Detalhes do Pedido` possui a data do pedido:
+- Atente-se que, no [protótipo](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1), a tela `Cliente / Detalhes do Pedido` possui a data do pedido:
   - A data deve ser inserida automaticamente durante o processo de inserção da venda após o checkout;
   - O banco de dados está configurado para o [`fuso horário Zulu (Z)`](https://pt.wikipedia.org/wiki/Fuso_hor%C3%A1rio#Meridianos) (`timezone: 'Z'` em `./back-end/database/config/config.js`), que é alinhado com o `UTC+0`;
     - Saiba mais sobre o [`UTC` (Tempo universal coordenado)](https://pt.wikipedia.org/wiki/Tempo_Universal_Coordenado);
@@ -993,7 +993,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Se oriente pela seguinte tela do protótipo: [`Comum / Meus Pedidos`](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1);
+- Se oriente pela seguinte tela do protótipo: [`Comum / Meus Pedidos`](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1);
 - Os `data-testid` desses itens devem terminar com o `id` de cada venda no banco. Por exemplo: 
   - `customer_products__element-order-date-1`; `customer_products__element-order-date-2`; ...; `customer_products__element-order-date-x`.
 
@@ -1061,7 +1061,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Se oriente pela seguinte tela do protótipo: [`Comum / Detalhes do Pedido`](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1);
+- Se oriente pela seguinte tela do protótipo: [`Comum / Detalhes do Pedido`](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1);
 
 <details>
   <summary>
@@ -1115,7 +1115,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Se oriente pela seguinte tela do protótipo: [`P. Vend / Pedidos`](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1);
+- Se oriente pela seguinte tela do protótipo: [`P. Vend / Pedidos`](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1);
 - Os `data-testid` desses itens devem terminar com o `id` de cada venda no banco. Por exemplo: 
   - `seller_orders__element-order-date-1`; `seller_orders__element-order-date-2`; ...; `seller_orders__element-order-date-x`.
 
@@ -1186,7 +1186,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Se oriente pela seguinte tela do protótipo: [`P. Vend / Detalhes do Pedido`](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1);
+- Se oriente pela seguinte tela do protótipo: [`P. Vend / Detalhes do Pedido`](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1);
 
 <details>
   <summary>
@@ -1345,7 +1345,7 @@ Todos os testes desse arquivo devem:
 
 **Observações técnicas**
 
-- Se oriente pela seguinte tela do protótipo: [`P. Adm. / Gerenciamento`](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1);
+- Se oriente pela seguinte tela do protótipo: [`P. Adm. / Gerenciamento`](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1);
   - Em um primeiro momento, não serão considerados os itens da tabela de usuários. Foque aqui em consolidar o formulário de cadastro.
 
 <details>
