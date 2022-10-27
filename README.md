@@ -52,7 +52,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
   - Fazer a comunicação entre clientes e pessoas vendedoras: a pessoa cliente faz o pedido via "carrinho de compras" e a pessoa vendedora aprova, prepara e envia esse pedido. Quando o produto é recebido por quem comprou, essa pessoa marca o pedido como "recebido". Ambos devem possuir detalhes sobre seus pedidos;
   - Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora em seu dash de pedidos após a atualização da página. A pessoa cliente, por sua vez, deve ter as informações sobre seu pedido quando sua página for atualizada, ou seja, ter informações se o pedido está sendo preparado ou se já saiu pra entrega;
 
-  Sua equipe, que já possui uma boa experiência com desenvolvimento, em pouco tempo apresentou um [protótipo](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1) e um [Diagrama de ER](./assets/readme/eer.png) conforme imagem:
+  Sua equipe, que já possui uma boa experiência com desenvolvimento, em pouco tempo apresentou um [protótipo](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1) e um [Diagrama de ER](./assets/readme/eer.png) conforme imagem:
 
   ![Diagrama de ER](./assets/readme/eer.png)
 
@@ -350,7 +350,7 @@ describe(requirement(1), () => {
     <strong> ℹ️ Data-testids do Projeto</strong>
   </summary><br>
 
-  O data-testid de cada elemento que será usado na avaliação do projeto está no arquivo [data-testids.txt](data-testids.txt) na raiz do projeto. Cada um desse elementos tem no [protótipo do figma](https://www.figma.com/file/izpLyHbig6O2SRo86oQsLJ/T19_Project_-Delivery-App?node-id=0%3A1) um número, e nesse arquivo, o `data-testid` que deve ser atribuído ao valor de tal. 
+  O data-testid de cada elemento que será usado na avaliação do projeto está no arquivo [data-testids.txt](data-testids.txt) na raiz do projeto. Cada um desse elementos tem no [protótipo do figma](https://www.figma.com/file/K5QMj8tHzs8ZX3cL1y8Vqh/T20_Project_-Delivery-App?node-id=0%3A1) um número, e nesse arquivo, o `data-testid` que deve ser atribuído ao valor de tal. 
 
   👀 **De olho na dica**: você pode ler mais sobre os atributos `data-*` [neste link](https://developer.mozilla.org/pt-BR/docs/Learn/HTML/Howto/Use_data_attributes).
 
