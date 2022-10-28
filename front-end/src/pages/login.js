@@ -48,9 +48,10 @@ export default function Login() {
     if (login.status === errorCode) {
       setMessageError(true);
     } else {
+      console.log(token);
       setToken(login);
       setMessageError(false);
-      console.log(token);
+      history.push('/customer/products');
     }
   };
 
@@ -96,7 +97,7 @@ export default function Login() {
         </button>
       </div>
       <div data-testid="common_login__element-invalid-email">
-        { messageError ? (
+        {messageError ? (
           <p>Login Inválido!</p>
         ) : null}
       </div>
