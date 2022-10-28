@@ -1,11 +1,11 @@
 require('dotenv/config').config();
 const jwt = require('jsonwebtoken');
-const md5 = require('md5')
+const md5 = require('md5');
 const { User } = require('../database/models');
 
 const { JWT_SECRET } = process.env;
 
-export const loginService = {
+const loginService = {
   create: async ({ email, password }) => {
     const user = await User.findOne({ where: { email } });
 
@@ -28,3 +28,5 @@ export const loginService = {
     return { token };
   },
 };
+
+module.exports = loginService;

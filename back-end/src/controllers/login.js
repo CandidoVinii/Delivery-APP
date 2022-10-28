@@ -1,6 +1,6 @@
-const { loginService } = require("../services/login");
+const loginService = require('../services/login');
 
-export const loginController = {
+const loginController = {
   create: async (req, res, next) => {
     const token = await loginService.create(req.body);
 
@@ -9,3 +9,5 @@ export const loginController = {
     return res.status(200).json(token);
   },
 };
+
+module.exports = loginController;

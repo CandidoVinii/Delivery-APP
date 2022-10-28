@@ -1,9 +1,11 @@
-const { Router } = require("express");
-const { create, getAll, getById } = require("../controllers/user").default;
-const { validateToken } = require("../middlewares/tokenValidation");
+const { Router } = require('express');
+const userController = require('../controllers/user');
+const validateToken = require('../middlewares/tokenValidation');
 
-export const userRouter = Router();
+const userRouter = Router();
 
-userRouter.post("/", create);
-userRouter.get("/", validateToken, getAll);
-userRouter.get("/:id", validateToken, getById);
+userRouter.post('/', userController.create);
+userRouter.get('/', validateToken, userController.getAll);
+userRouter.get('/:id', validateToken, userController.getById);
+
+module.exports = userRouter;

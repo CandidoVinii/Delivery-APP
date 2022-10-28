@@ -1,10 +1,10 @@
-import { sign } from "jsonwebtoken";
-import { User } from "../database/models";
-import validations from "../middlewares/userValidation";
+const { sign } = require('jsonwebtoken');
+const { User } = require('../database/models');
+const validations = require('../middlewares/userValidation');
 
 const { JWT_SECRET } = process.env;
 
-export const userService = {
+const userService = {
   create: async (data) => {
     const validate = await validations(data);
     if (validate.error) {
@@ -15,7 +15,7 @@ export const userService = {
 
     const userData = { email: data.email, id: user.id };
     const jwtConfig = {
-      algorithm: "HS256",
+      algorithm: 'HS256',
     };
 
     const token = sign(userData, JWT_SECRET, jwtConfig);
@@ -25,7 +25,7 @@ export const userService = {
 
   getAll: async () => {
     const listUsers = await User.findAll({
-      attributes: { exclude: "password" },
+      attributes: { exclude: 'password' },
     });
     return listUsers;
   },
@@ -33,7 +33,7 @@ export const userService = {
   getById: async (id) => {
     const user = await User.findOne({
       where: { id },
-      attributes: { exclude: "password" },
+      attributes: { exclude: 'password' },
     });
     return user;
 
@@ -42,3 +42,4 @@ export const userService = {
   },
 };
 
+module.exports = userService;

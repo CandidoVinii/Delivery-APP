@@ -1,6 +1,6 @@
-const { userService } = require('../services/user');
+const userService = require('../services/user');
 
-export const userController = {
+const userController = {
   create: async (req, res) => {
     const token = await userService.create(req.body);
     if (token.error) {
@@ -26,3 +26,4 @@ export const userController = {
   },
 };
 
+module.exports = userController;

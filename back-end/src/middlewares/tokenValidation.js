@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET } = process.env;
 
-export const validateToken = (req, res, next) => {
+const validateToken = (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
@@ -19,4 +19,4 @@ export const validateToken = (req, res, next) => {
     return res.status(401).json({ message: 'Expired or invalid token' });
   }
 };
-
+module.exports = validateToken;
