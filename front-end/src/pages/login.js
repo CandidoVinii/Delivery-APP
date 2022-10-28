@@ -1,22 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import '../App.css';
-// import rockGlass from '../images/rockGlass.svg';
 
 export default function Login() {
   const history = useHistory();
-  // const [errorMessage, setErrorMessage] = useState(false);
+  const [disabledLoginButton, setDisabledLoginButton] = useState(true);
+  const [email, setEmail] = useState('');
+  const [validEmail, setValidEmail] = useState(false);
+  const [password, setPassword] = useState('');
+  const [validPassword, setValidPassword] = useState(false);
+
+  useEffect(() => {
+    if (validEmail && validPassword) {
+      return setDisabledLoginButton(false);
+    }
+    return setDisabledLoginButton(true);
+  }, [validEmail, validPassword]);
+
+  const validateEmail = (value) => {
+    const pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/igm;
+    const validation = pattern.test(value);
+    setValidEmail(validation);
+  };
+
+  const validatePassword = (value) => {
+    const passwordMinimumLength = 6;
+    const validation = value.length >= passwordMinimumLength;
+    setValidPassword(validation);
+  };
+
+  const handleChange = (e) => {
+    if (e.target.id === 'email') {
+      validateEmail(e.target.value);
+      setEmail(e.target.value);
+    }
+    if (e.target.id === 'password') {
+      validatePassword(e.target.value);
+      setPassword(e.target.value);
+    }
+  };
 
   return (
     <div className="Login">
       <div>
-        <label htmlFor="login">
-          Login:
+        <label htmlFor="email">
+          Email:
           {' '}
           <input
-            id="login"
+            id="email"
             data-testid="common_login__input-email"
             type="text"
+            onChange={ handleChange }
+            value={ email }
           />
         </label>
         <label htmlFor="password">
@@ -26,11 +60,14 @@ export default function Login() {
             id="password"
             data-testid="common_login__input-password"
             type="password"
+            onChange={ handleChange }
+            value={ password }
           />
         </label>
         <button
           data-testid="common_login__button-login"
           type="button"
+          disabled={ disabledLoginButton }
         >
           LOGIN
         </button>
@@ -45,8 +82,6 @@ export default function Login() {
       <div data-testid="common_login__element-invalid-email">
         [Elemento oculto (Mensagens de erro)]
       </div>
-      <div />
-      {/* <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>Glass</object> */}
     </div>
   );
 }
