@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('user', {
+  const users = sequelize.define('users', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -33,5 +33,5 @@ module.exports = (sequelize, DataTypes) => {
   //     { foreignKey: 'id', as: 'userId' });
   // };
 
-  return User;
+  return users;
 };
