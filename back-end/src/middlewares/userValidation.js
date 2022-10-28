@@ -1,4 +1,4 @@
-import { User } from '../database/models';
+const User = require('../database/models');
 
 const userValidations = async (data) => {
   if (data.name.length < 12) {
