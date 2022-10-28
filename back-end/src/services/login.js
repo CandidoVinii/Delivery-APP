@@ -1,19 +1,19 @@
-require('dotenv/config').config();
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
-const { User } = require('../database/models');
+const { users } = require('../database/models');
 
 const { JWT_SECRET } = process.env;
 
 const loginService = {
   create: async ({ email, password }) => {
-    const user = await User.findOne({ where: { email } });
+    const user = await users.findOne({ where: { email } });
 
     if (md5(password) !== user.password) {
-      return { message: 'Not Found', code: 400 };
+      return { message: 'Not Found', code: 404 };
     }
-    if (!user) return { message: 'User Not Found', code: 404 };
-    if (!user || user.password !== password) {
+    if (!user) return { message: 'Not found', code: 404 };
+    if (!email || !password) {
       return { message: 'Invalid fields', code: 400 };
     }
 
