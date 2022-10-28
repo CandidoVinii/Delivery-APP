@@ -9,10 +9,10 @@ const loginService = {
   create: async ({ email, password }) => {
     const user = await users.findOne({ where: { email } });
 
+    if (!user) return { message: 'Not found', code: 404 };
     if (md5(password) !== user.password) {
       return { message: 'Not Found', code: 404 };
     }
-    if (!user) return { message: 'Not found', code: 404 };
     if (!email || !password) {
       return { message: 'Invalid fields', code: 400 };
     }
