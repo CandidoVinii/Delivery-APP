@@ -108,7 +108,7 @@ export default function Register() {
           data-testid="common_register__button-register"
           type="button"
           disabled={ disabledLoginButton }
-          onClick={ () => createUserApi() }
+          onClick={ createUserApi }
         >
           CADASTRAR
         </button>
