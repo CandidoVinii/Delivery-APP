@@ -14,7 +14,7 @@ const userService = {
     const passwordHash = md5(data.password);
 
     await users.create({ ...data, password: passwordHash });
-    const userData = { email: data.email, nome: data.nome };
+    const userData = { email: data.email, nome: data.name };
     const jwtConfig = {
       algorithm: 'HS256',
     };
