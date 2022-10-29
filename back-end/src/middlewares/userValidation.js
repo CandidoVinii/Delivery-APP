@@ -1,4 +1,4 @@
-const User = require('../database/models');
+const { users } = require('../database/models');
 
 const userValidations = async (data) => {
   if (data.name.length < 12) {
@@ -18,7 +18,7 @@ const userValidations = async (data) => {
       { code: 400, message: '"Password" length must be at least 6 characters long' } };
   }
   
-  const userLogin = await User.findOne({ where: { email: data.email } });
+  const userLogin = await users.findOne({ where: { email: data.email } });
     if (userLogin) return { error: { code: 409, message: 'User already registered' } };
     return true;
 };
