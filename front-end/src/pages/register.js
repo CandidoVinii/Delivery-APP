@@ -64,6 +64,7 @@ export default function Register() {
       setToken(userCreate);
       setMessageError(false);
       history.push('/customer/products');
+      console.log(token);
     }
   };
 
