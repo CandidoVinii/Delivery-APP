@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import loginUser from '../helpers/apiLogin';
+import { loginUser } from '../helpers/apiLogin';
 
 export default function Login() {
   const history = useHistory();
@@ -16,6 +16,7 @@ export default function Login() {
     if (validEmail && validPassword) {
       return setDisabledLoginButton(false);
     }
+    setMessageError(false);
     return setDisabledLoginButton(true);
   }, [validEmail, validPassword]);
 

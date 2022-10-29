@@ -20,4 +20,25 @@ const loginUser = async (email, password) => {
     .catch((error) => error.response);
 };
 
-export default loginUser;
+const createUser = async (name, email, password) => {
+  const data = JSON.stringify({
+    name,
+    email,
+    password,
+  });
+
+  const config = {
+    method: 'post',
+    url: 'http://localhost:3001/user',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data,
+  };
+
+  return axios(config)
+    .then((response) => response)
+    .catch((error) => error.response);
+};
+
+export { loginUser, createUser };

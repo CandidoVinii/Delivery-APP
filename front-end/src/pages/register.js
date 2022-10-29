@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createUser } from '../helpers/apiLogin';
 
 export default function Register() {
   const [disabledLoginButton, setDisabledLoginButton] = useState(true);
@@ -8,13 +9,14 @@ export default function Register() {
   const [validPassword, setValidPassword] = useState(false);
   const [name, setName] = useState('');
   const [validName, setValidName] = useState(false);
-  // const [token, setToken] = useState('');
-  // const [messageError, setMessageError] = useState(false);
+  const [token, setToken] = useState('');
+  const [messageError, setMessageError] = useState(false);
 
   useEffect(() => {
     if (validEmail && validPassword && validName) {
       return setDisabledLoginButton(false);
     }
+    setMessageError(false);
     return setDisabledLoginButton(true);
   }, [validEmail, validPassword, validName]);
 
@@ -49,6 +51,18 @@ export default function Register() {
       validatePassword(e.target.value);
       setPassword(e.target.value);
     }
+  };
+
+  const createUserApi = async () => {
+    const userCreate = await createUser(name, email, password);
+    const errorCode = 409;
+    if (await userCreate.status === errorCode) {
+      setMessageError(true);
+    } else {
+      setToken(userCreate.data);
+      setMessageError(false);
+    }
+    console.log(token);
   };
 
   return (
@@ -91,12 +105,15 @@ export default function Register() {
           data-testid="common_register__button-register"
           type="button"
           disabled={ disabledLoginButton }
+          onClick={ () => createUserApi() }
         >
           CADASTRAR
         </button>
       </div>
       <div data-testid="common_register__element-invalid_register">
-        [Elemento oculto (Mensagens de erro)]
+        {messageError ? (
+          <p>Campos inválidos!</p>
+        ) : null}
       </div>
       <div />
       {/* <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>Glass</object> */}

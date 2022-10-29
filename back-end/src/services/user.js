@@ -1,5 +1,6 @@
+const md5 = require('md5');
 const { sign } = require('jsonwebtoken');
-const { User } = require('../database/models');
+const { users } = require('../database/models');
 const validations = require('../middlewares/userValidation');
 
 const { JWT_SECRET } = process.env;
@@ -10,10 +11,10 @@ const userService = {
     if (validate.error) {
       return validate;
     }
+    const passwordHash = md5(data.password);
 
-    const user = await User.create(data);
-
-    const userData = { email: data.email, id: user.id };
+    await users.create({ ...data, password: passwordHash });
+    const userData = { email: data.email, nome: data.name };
     const jwtConfig = {
       algorithm: 'HS256',
     };
@@ -24,14 +25,14 @@ const userService = {
   },
 
   getAll: async () => {
-    const listUsers = await User.findAll({
+    const listUsers = await users.findAll({
       attributes: { exclude: 'password' },
     });
     return listUsers;
   },
 
   getById: async (id) => {
-    const user = await User.findOne({
+    const user = await users.findOne({
       where: { id },
       attributes: { exclude: 'password' },
     });
