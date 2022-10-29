@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { createUser } from '../helpers/apiLogin';
 
 export default function Register() {
+  const history = useHistory();
   const [disabledLoginButton, setDisabledLoginButton] = useState(true);
   const [email, setEmail] = useState('');
   const [validEmail, setValidEmail] = useState(false);
@@ -56,13 +58,13 @@ export default function Register() {
   const createUserApi = async () => {
     const userCreate = await createUser(name, email, password);
     const errorCode = 409;
-    if (await userCreate.status === errorCode) {
+    if (userCreate === errorCode) {
       setMessageError(true);
     } else {
-      setToken(userCreate.data);
+      setToken(userCreate);
       setMessageError(false);
+      history.push('/customer/products');
     }
-    console.log(token);
   };
 
   return (

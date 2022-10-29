@@ -17,7 +17,7 @@ const loginUser = async (email, password) => {
 
   return axios(config)
     .then((response) => response.data)
-    .catch((error) => error.response);
+    .catch((error) => error.response.status);
 };
 
 const createUser = async (name, email, password) => {
@@ -37,8 +37,8 @@ const createUser = async (name, email, password) => {
   };
 
   return axios(config)
-    .then((response) => response)
-    .catch((error) => error.response);
+    .then((response) => response.data)
+    .catch((error) => error.response.status);
 };
 
 export { loginUser, createUser };

@@ -46,7 +46,7 @@ export default function Login() {
   const loginApi = async () => {
     const login = await loginUser(email, password);
     const errorCode = 404;
-    if (login.status === errorCode) {
+    if (login === errorCode) {
       setMessageError(true);
     } else {
       console.log(token);
