@@ -1,9 +1,10 @@
 require('dotenv').config();
+const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const { users } = require('../database/models');
 
-const { JWT_SECRET } = process.env;
+const JWT_SECRET = fs.readFileSync('jwt.evaluation.key', 'utf-8');
 
 const loginService = {
   create: async ({ email, password }) => {
