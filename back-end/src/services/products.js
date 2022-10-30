@@ -1,16 +1,19 @@
-const { products } = require('../database/products');
+const { products } = require('../database/models');
 
 const productService = {
   getAll: async () => {
     const listProducts = await products.findAll(
-      { attributes: [ "id", "name", "price", "url_image" ] },
+      { attributes: ['id', 'name', 'price', 'url_image'] },
     );
     return listProducts;
   },
 
   getById: async (id) => {
-    const product = await users.findOne(
-      { attributes: [ "id", "name", "price", "url_image" ] },
+    const product = await products.findOne(
+      { 
+        where: { id },
+        attributes: ['id', 'name', 'price', 'url_image'],
+      },
     );
     return product;
   },
