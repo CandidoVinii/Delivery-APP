@@ -3,6 +3,7 @@ const cors = require('cors');
 const errorMiddleware = require('../middlewares/error');
 const loginRouter = require('../routes/loginRouter');
 const userRouter = require('../routes/userRouter');
+const productRouter = require('../routes/productRouter');
 
 const app = express();
 app.use(express.json());
@@ -13,6 +14,7 @@ app.get('/coffee', (_req, res) => res.status(418).end());
 
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
+app.use('/products', productRouter);
 
 app.use(errorMiddleware);
 
