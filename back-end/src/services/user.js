@@ -1,9 +1,10 @@
+const fs = require('fs');
 const md5 = require('md5');
 const { sign } = require('jsonwebtoken');
 const { users } = require('../database/models');
 const validations = require('../middlewares/userValidation');
 
-const { JWT_SECRET } = process.env;
+const JWT_SECRET = fs.readFileSync('jwt.evaluation.key', 'utf-8');
 
 const userService = {
   create: async (data) => {

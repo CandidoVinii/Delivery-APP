@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const loginUser = async (email, password) => {
-  const data = JSON.stringify({
+  const data = {
     email,
     password,
-  });
+  };
 
   const config = {
     method: 'post',
@@ -17,15 +17,15 @@ const loginUser = async (email, password) => {
 
   return axios(config)
     .then((response) => response.data)
-    .catch((error) => error.response);
+    .catch((error) => error.response.status);
 };
 
 const createUser = async (name, email, password) => {
-  const data = JSON.stringify({
+  const data = {
     name,
     email,
     password,
-  });
+  };
 
   const config = {
     method: 'post',
@@ -37,8 +37,8 @@ const createUser = async (name, email, password) => {
   };
 
   return axios(config)
-    .then((response) => response)
-    .catch((error) => error.response);
+    .then((response) => response.data)
+    .catch((error) => error.response.status);
 };
 
 export { loginUser, createUser };
