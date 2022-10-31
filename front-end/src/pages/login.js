@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { loginUser } from '../helpers/apiLogin';
 
 export default function Login() {
   const history = useHistory();
@@ -8,11 +9,14 @@ export default function Login() {
   const [validEmail, setValidEmail] = useState(false);
   const [password, setPassword] = useState('');
   const [validPassword, setValidPassword] = useState(false);
+  const [token, setToken] = useState('');
+  const [messageError, setMessageError] = useState(false);
 
   useEffect(() => {
     if (validEmail && validPassword) {
       return setDisabledLoginButton(false);
     }
+    setMessageError(false);
     return setDisabledLoginButton(true);
   }, [validEmail, validPassword]);
 
@@ -36,6 +40,19 @@ export default function Login() {
     if (e.target.id === 'password') {
       validatePassword(e.target.value);
       setPassword(e.target.value);
+    }
+  };
+
+  const loginApi = async () => {
+    const login = await loginUser(email, password);
+    const errorCode = 404;
+    if (login === errorCode) {
+      setMessageError(true);
+    } else {
+      console.log(token);
+      setToken(login);
+      setMessageError(false);
+      history.push('/customer/products');
     }
   };
 
@@ -68,6 +85,7 @@ export default function Login() {
           data-testid="common_login__button-login"
           type="button"
           disabled={ disabledLoginButton }
+          onClick={ () => loginApi() }
         >
           LOGIN
         </button>
@@ -80,7 +98,9 @@ export default function Login() {
         </button>
       </div>
       <div data-testid="common_login__element-invalid-email">
-        [Elemento oculto (Mensagens de erro)]
+        {messageError ? (
+          <p>Login Inválido!</p>
+        ) : null}
       </div>
     </div>
   );
