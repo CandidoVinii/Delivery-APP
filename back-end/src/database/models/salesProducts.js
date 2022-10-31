@@ -1,4 +1,5 @@
 'use strict';
+const sales = require("./sales");
 
 module.exports = (sequelize, DataTypes) => {
   const salesProducts = sequelize.define('salesProducts', {
