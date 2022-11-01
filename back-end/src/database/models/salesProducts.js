@@ -1,4 +1,5 @@
 'use strict';
+const sales = require("./sales");
 
 const sales = require("./sales");
 

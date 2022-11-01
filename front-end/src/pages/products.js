@@ -13,13 +13,6 @@ export default function Products() {
     })();
   }, []);
 
-  // useEffect(() => {
-  //   const bla = products
-  //     .map(({ id }, index) => <div className="teste" key={ index }>{id}</div>);
-  //   console.log(bla);
-  //   setCards(bla);
-  // }, [products]);
-
   return (
     <>
       <Navbar />
