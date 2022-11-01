@@ -1,7 +1,4 @@
 'use strict';
-const sales = require("./sales");
-
-const sales = require("./sales");
 
 module.exports = (sequelize, DataTypes) => {
   const salesProducts = sequelize.define('salesProducts', {
@@ -21,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true
   });
   
-  sales.associate = (models) => {
+  salesProducts.associate = (models) => {
     models.sales.belongsToMany(models.products, { 
       through: salesProducts,
       as: 'products',
