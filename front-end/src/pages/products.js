@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
 import Navbar from '../components/navbar';
 import ProductCard from '../components/product';
 import './products.css';
+import Context from '../context/Context';
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios('http://localhost:3001/products');
-      setProducts(data);
-    })();
-  }, []);
+  const { products } = useContext(Context);
 
   return (
     <>
