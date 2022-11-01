@@ -40,7 +40,7 @@ module.exports = {
       deliveryNumber: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: "deliver_number",
+        field: "delivery_number",
       },
       saleDate: {
         type: Sequelize.DATE,
