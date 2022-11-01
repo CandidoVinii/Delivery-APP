@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../components/navbar';
 import ProductCard from '../components/product';
+import './products.css';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
