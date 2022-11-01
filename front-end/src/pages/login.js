@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { loginUser } from '../helpers/apiLogin';
+import { setLocalStorage } from '../helpers/localStorage';
 
 export default function Login() {
   const history = useHistory();
@@ -9,7 +10,6 @@ export default function Login() {
   const [validEmail, setValidEmail] = useState(false);
   const [password, setPassword] = useState('');
   const [validPassword, setValidPassword] = useState(false);
-  const [token, setToken] = useState('');
   const [messageError, setMessageError] = useState(false);
 
   useEffect(() => {
@@ -49,9 +49,9 @@ export default function Login() {
     if (login === errorCode) {
       setMessageError(true);
     } else {
-      console.log(token);
-      setToken(login);
+      // setToken(login);
       setMessageError(false);
+      setLocalStorage('userdata', login);
       history.push('/customer/products');
     }
   };
