@@ -6,16 +6,17 @@ const userController = {
     if (token.error) {
       // error.code e error.message são acessados através do userService, que por sua vez tem acesso a userValidation.js
       return res.status(token.error.code)
-      .json({ message: token.error.message });
+        .json({ message: token.error.message });
     }
 
-    return res.status(201).json({ token });
+    return res.status(201)
+      .json({ name: token.name, email: token.email, role: null, token: token.token });
   },
 
-  getAll: async (_req, res) => {
-    const users = await userService.getAll();
-    return res.status(200).json(users);
-  },
+getAll: async (_req, res) => {
+  const users = await userService.getAll();
+  return res.status(200).json(users);
+},
 
   getById: async (req, res) => {
     const { id } = req.params;

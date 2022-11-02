@@ -22,8 +22,8 @@ const userService = {
 
     const token = sign(userData, JWT_SECRET, jwtConfig);
 
-    return token;
-  },
+    return { name: data.name, email: data.email, role: null, token, };
+},
 
   getAll: async () => {
     const listUsers = await users.findAll({
@@ -32,16 +32,16 @@ const userService = {
     return listUsers;
   },
 
-  getById: async (id) => {
-    const user = await users.findOne({
-      where: { id },
-      attributes: { exclude: 'password' },
-    });
-    return user;
+    getById: async (id) => {
+      const user = await users.findOne({
+        where: { id },
+        attributes: { exclude: 'password' },
+      });
+      return user;
 
-    // Outra forma de desenvolver usando o findByPk
-    // const user = await User.findByPk(id, { attributes: { exclude: 'password' } });
-  },
+      // Outra forma de desenvolver usando o findByPk
+      // const user = await User.findByPk(id, { attributes: { exclude: 'password' } });
+    },
 };
 
 module.exports = userService;
