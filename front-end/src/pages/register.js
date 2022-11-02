@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createUser } from '../helpers/apiLogin';
+import { setLocalStorage } from '../helpers/localStorage';
 
 export default function Register() {
   const history = useHistory();
@@ -11,7 +12,6 @@ export default function Register() {
   const [validPassword, setValidPassword] = useState(false);
   const [name, setName] = useState('');
   const [validName, setValidName] = useState(false);
-  const [token, setToken] = useState('');
   const [messageError, setMessageError] = useState(false);
 
   useEffect(() => {
@@ -61,10 +61,9 @@ export default function Register() {
     if (userCreate === errorCode) {
       setMessageError(true);
     } else {
-      setToken(userCreate);
       setMessageError(false);
       history.push('/customer/products');
-      console.log(token);
+      setLocalStorage('user', userCreate);
     }
   };
 
@@ -118,8 +117,6 @@ export default function Register() {
           <p>Campos inválidos!</p>
         ) : null}
       </div>
-      <div />
-      {/* <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>Glass</object> */}
     </div>
   );
 }
