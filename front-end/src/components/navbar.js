@@ -1,6 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { getLocalStorage, removeLocalStorage } from '../helpers/localStorage';
 
 export default function Navbar() {
+  const [name, setName] = useState('');
+  const history = useHistory();
+
+  useEffect(() => {
+    const userData = getLocalStorage('user');
+    setName(userData.name);
+  }, []);
+
+  const logout = () => {
+    history.push('/');
+    removeLocalStorage('user');
+  };
+
   return (
     <nav>
       <ul>
@@ -16,13 +31,17 @@ export default function Navbar() {
         </li>
         <li>
           <div data-testid="customer_products__element-navbar-user-full-name">
-            nome
+            {name}
           </div>
         </li>
         <li>
-          <div data-testid="customer_products__element-navbar-link-logout">
-            logout
-          </div>
+          <button
+            type="button"
+            data-testid="customer_products__element-navbar-link-logout"
+            onClick={ logout }
+          >
+            sair
+          </button>
         </li>
       </ul>
     </nav>

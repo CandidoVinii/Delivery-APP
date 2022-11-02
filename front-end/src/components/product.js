@@ -8,7 +8,7 @@ export default function ProductCard(product) {
         {name}
       </h3>
       <h1 data-testid={ `customer_products__element-card-price-${id}` }>
-        {price}
+        {price.replace('.', ',')}
       </h1>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }

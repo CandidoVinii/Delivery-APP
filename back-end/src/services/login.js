@@ -23,10 +23,13 @@ const loginService = {
     };
 
     const token = jwt.sign({
-      data: { email, id: user.dataValues.id } },
+      data: { email, id: user.dataValues.id },
+    },
       JWT_SECRET, jwtConfig);
 
-    return { token };
+    return {
+      name: user.dataValues.name, email: user.dataValues.email, role: user.dataValues.role, token,
+    };
   },
 };
 
