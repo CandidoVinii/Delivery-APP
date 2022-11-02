@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { loginUser } from '../helpers/apiLogin';
-import { setLocalStorage } from '../helpers/localStorage';
+import { getLocalStorage, setLocalStorage } from '../helpers/localStorage';
+import Context from '../context/Context';
 
 export default function Login() {
   const history = useHistory();
@@ -11,6 +12,16 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [validPassword, setValidPassword] = useState(false);
   const [messageError, setMessageError] = useState(false);
+
+  const { setToken } = useContext(Context);
+
+  useEffect(() => {
+    const userData = getLocalStorage('user');
+    if (userData) {
+      setToken(userData);
+      history.push('/customer/products');
+    }
+  }, []);
 
   useEffect(() => {
     if (validEmail && validPassword) {
@@ -49,9 +60,8 @@ export default function Login() {
     if (login === errorCode) {
       setMessageError(true);
     } else {
-      // setToken(login);
       setMessageError(false);
-      setLocalStorage('userdata', login);
+      setLocalStorage('user', login);
       history.push('/customer/products');
     }
   };
