@@ -22,7 +22,7 @@ const userService = {
 
     const token = sign(userData, JWT_SECRET, jwtConfig);
 
-    return { name: data.name, email: data.email, role: null, token, };
+    return { name: data.name, email: data.email, role: null, token };
 },
 
   getAll: async () => {
