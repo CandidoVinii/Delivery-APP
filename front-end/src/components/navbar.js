@@ -14,6 +14,7 @@ export default function Navbar() {
   const logout = () => {
     history.push('/');
     removeLocalStorage('user');
+    removeLocalStorage('carrinho');
   };
 
   return (
