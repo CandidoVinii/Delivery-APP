@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+// import PropTypes from 'prop-types';
 import Navbar from '../components/navbar';
-import ProductCard from '../components/product';
+import ProductCard from '../components/ProductCard';
 import './products.css';
 import Context from '../context/Context';
 
@@ -23,8 +24,11 @@ export default function Products() {
     <>
       <Navbar />
       {products.map((product) => (
-        ProductCard(product)
-      ))}
+        <ProductCard key={ product.id } product={ product } />))}
     </>
   );
 }
+
+// Products.propTypes = {
+//   obj: PropTypes.objectOf.isRequired,
+// };
