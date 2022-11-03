@@ -5,6 +5,7 @@ import Login from './pages/login';
 import Register from './pages/register';
 import Products from './pages/products';
 import Provider from './context/Provider';
+import CartProvider from './context/CartProvider';
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
           </Route>
           <Route exact path="/login" component={ Login } />
           <Route exact path="/register" component={ Register } />
-          <Route exact path="/customer/products" component={ Products } />
+          <CartProvider>
+            <Route exact path="/customer/products" component={ Products } />
+          </CartProvider>
         </Provider>
       </Switch>
     </BrowserRouter>
