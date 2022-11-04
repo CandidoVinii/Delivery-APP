@@ -4,6 +4,7 @@ import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import Login from './pages/login';
 import Register from './pages/register';
 import Products from './pages/products';
+import Checkout from './pages/checkout';
 import Provider from './context/Provider';
 import CartProvider from './context/CartProvider';
 
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/register" component={ Register } />
           <CartProvider>
             <Route exact path="/customer/products" component={ Products } />
+            <Route exact path="/customer/checkout" component={ Checkout } />
           </CartProvider>
         </Provider>
       </Switch>
