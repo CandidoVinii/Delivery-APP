@@ -6,7 +6,7 @@ import Register from './pages/register';
 import Products from './pages/products';
 import Checkout from './pages/checkout';
 import Provider from './context/Provider';
-import CartProvider from './context/CartProvider';
+// import CartProvider from './context/CartProvider';
 
 function App() {
   return (
@@ -18,10 +18,8 @@ function App() {
           </Route>
           <Route exact path="/login" component={ Login } />
           <Route exact path="/register" component={ Register } />
-          <CartProvider>
-            <Route exact path="/customer/products" component={ Products } />
-            <Route exact path="/customer/checkout" component={ Checkout } />
-          </CartProvider>
+          <Route exact path="/customer/products" component={ Products } />
+          <Route exact path="/customer/checkout" component={ Checkout } />
         </Provider>
       </Switch>
     </BrowserRouter>
