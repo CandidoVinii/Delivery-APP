@@ -1,17 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CartContext from '../context/CartContext';
 
 export default function ProductCard({ product }) {
-  const [quantity, setQuantity] = useState(0);
-  const [setCart] = useContext(CartContext);
   const { id, name, price, url_image: urlImage } = product;
-  const cartItem = { ...product, quantity };
+  const { addItem } = useContext(CartContext);
+
+  const [quantity, setQuantity] = useState(0);
+  const [thisCartItem, setThisCartItem] = useState({});
+  const object = { ...product, quantity, subTotal: price * quantity };
+
+  useEffect(() => {
+    setThisCartItem(object);
+    addItem(thisCartItem);
+  }, [quantity]);
 
   const handleClick = (e) => {
     if (e.target.id === 'increment') {
       setQuantity((prevState) => prevState + 1);
-      setCart(cartItem);
     }
     if (e.target.id === 'decrement') {
       setQuantity((prevState) => {
