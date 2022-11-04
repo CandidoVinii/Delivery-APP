@@ -1,43 +1,51 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import CartContext from './CartContext';
-import { getLocalStorage } from '../helpers/localStorage';
+// import React, { useState, useMemo } from 'react';
+// import PropTypes from 'prop-types';
+// import CartContext from './CartContext';
+// // import { getLocalStorage } from '../helpers/localStorage';
 
-function Provider({ children }) {
-  const [cart, setCart] = useState([]);
+// function Provider({ children }) {
+//   const [cart, setCart] = useState([]);
 
-  // useEffect(() => {
-  //   const cartData = getLocalStorage('carrinho');
-  //   if (cartData === null) { return setCart([]); }
-  //   setCart(cartData);
-  // }, []);
+//   // useEffect(() => {
+//   //   const cartData = getLocalStorage('carrinho');
+//   //   if (cartData === null) { return setCart([]); }
+//   //   setCart(cartData);
+//   // }, []);
 
-  const addItem = (value) => {
-    setCart(
-      cart.map((item) => {
-        if (item.id === value.id) {
-          return { ...item, quantity: value.quantity };
-        }
-        return setCart([...cart, value]);
-      }),
-    );
-  };
+//   // useEffect(() => {
+//   //   setCart([...cart]);
+//   // }, [cart]);
 
-  const context = useMemo(() => (
-    { cart, addItem }
-  ), [cart]);
+//   const addItem = (value) => {
+//     if (cart.find((item) => { item.id === value.id; })) { cart.find(); }
+//     // setCart([...cart, value]);
+//     if (cart.length === 0) setCart([...cart, value]);
+//     cart.map((item) => {
+//       if (item.id === value.id) {
+//         console.log({ item });
+//         console.log({ value });
+//         return setCart({ ...item, quantity: value.quantity });
+//       }
+//       console.log('4', cart);
+//       return setCart([...cart, value]);
+//     });
+//   };
 
-  return (
-    <div>
-      <CartContext.Provider value={ context }>
-        {children}
-      </CartContext.Provider>
-    </div>
-  );
-}
+//   const context = useMemo(() => (
+//     { cart, addItem }
+//   ), [cart]);
 
-Provider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+//   return (
+//     <div>
+//       <CartContext.Provider value={ context }>
+//         {children}
+//       </CartContext.Provider>
+//     </div>
+//   );
+// }
 
-export default Provider;
+// Provider.propTypes = {
+//   children: PropTypes.node.isRequired,
+// };
+
+// export default Provider;
