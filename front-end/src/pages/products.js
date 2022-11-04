@@ -6,9 +6,11 @@ import Navbar from '../components/navbar';
 import ProductCard from '../components/ProductCard';
 import './products.css';
 import Context from '../context/Context';
+import CartContext from '../context/CartContext';
 
 export default function Products() {
   const { token, products, setProducts } = useContext(Context);
+  const { cart } = useContext(CartContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -25,6 +27,16 @@ export default function Products() {
       <Navbar />
       {products.map((product) => (
         <ProductCard key={ product.id } product={ product } />))}
+      {cart.length !== 0
+        ? (
+          <button
+            type="button"
+          >
+            Ver carrinho:
+
+          </button>
+        )
+        : ''}
     </>
   );
 }
