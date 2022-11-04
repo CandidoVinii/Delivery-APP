@@ -1,36 +1,41 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import CartContext from '../context/CartContext';
 
-export default function ProductCard({ product }) {
-  const { id, name, price, url_image: urlImage } = product;
-  const { addItem } = useContext(CartContext);
-
-  const [quantity, setQuantity] = useState(0);
-  const [thisCartItem, setThisCartItem] = useState({});
-  const object = { ...product, quantity, subTotal: price * quantity };
-
-  useEffect(() => {
-    setThisCartItem(object);
-    addItem(thisCartItem);
-  }, [quantity]);
+export default function ProductCard({ object }) {
+  const { id, name, price, url_image: urlImage } = object.product;
 
   const handleClick = (e) => {
     if (e.target.id === 'increment') {
-      setQuantity((prevState) => prevState + 1);
+      const cartQuantity = object.cart.map((item) => {
+        if (item.id === id) {
+          item.quantity += 1;
+        }
+        return item;
+      });
+      object.setCart(cartQuantity);
     }
     if (e.target.id === 'decrement') {
-      setQuantity((prevState) => {
-        if (prevState > 0) { return prevState - 1; }
-        return 0;
+      const cartQuantity = object.cart.map((item) => {
+        if (item.id === id) {
+          item.quantity -= 1;
+        }
+        if (item.quantity < 0) item.quantity = 0;
+        return item;
       });
+      object.setCart(cartQuantity);
     }
   };
 
   const handleChange = (e) => {
-    const fieldValue = Number(e.target.value);
-    if (fieldValue > 0) { return setQuantity(fieldValue); }
-    setQuantity(0);
+    let fieldValue = Number(e.target.value);
+    if (fieldValue < 0) fieldValue = 0;
+    const cartQuantity = object.cart.map((item) => {
+      if (item.id === id) {
+        item.quantity = fieldValue;
+      }
+      return item;
+    });
+    object.setCart(cartQuantity);
   };
 
   return (
@@ -63,9 +68,9 @@ export default function ProductCard({ product }) {
         -
       </button>
       <input
-        type="text"
+        type="number"
         data-testid={ `customer_products__input-card-quantity-${id}` }
-        value={ quantity }
+        value={ object.cart[object.index].quantity }
         onChange={ handleChange }
       />
     </div>
@@ -73,5 +78,5 @@ export default function ProductCard({ product }) {
 }
 
 ProductCard.propTypes = {
-  product: PropTypes.objectOf.isRequired,
+  object: PropTypes.objectOf.isRequired,
 };
