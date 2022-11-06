@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-// import PropTypes from 'prop-types';
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import './products.css';
 import Context from '../context/Context';
 // import CartContext from '../context/CartContext';
-// import { setLocalStorage } from '../helpers/localStorage';
+import { setLocalStorage } from '../helpers/localStorage';
 
 export default function Products() {
   const { token, products, setProducts } = useContext(Context);
@@ -32,6 +31,11 @@ export default function Products() {
     })();
   }, [token, setProducts, history]);
 
+  const toCheckout = () => {
+    setLocalStorage('carrinho', cart);
+    history.push('/customer/checkout');
+  };
+
   return (
     <>
       <Navbar />
@@ -43,7 +47,7 @@ export default function Products() {
       <button
         type="button"
         data-testid="customer_products__button-cart"
-        onClick={ () => { history.push('/customer/checkout'); } }
+        onClick={ toCheckout }
         disabled={ cart.every((item) => (item.quantity === 0)) }
 
       >
@@ -56,7 +60,3 @@ export default function Products() {
     </>
   );
 }
-
-// Products.propTypes = {
-//   obj: PropTypes.objectOf.isRequired,
-// };
