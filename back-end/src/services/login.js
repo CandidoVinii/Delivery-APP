@@ -10,17 +10,11 @@ const loginService = {
   create: async ({ email, password }) => {
     const user = await users.findOne({ where: { email } });
 
-    if (!email || !password) {
-      return { message: 'Invalid fields', code: 400 };
-    }
+    if (!email || !password) return { message: 'Invalid fields', code: 400 };
     if (!user) return { message: 'Not found', code: 404 };
-    if (md5(password) !== user.password) {
-      return { message: 'Not Found', code: 404 };
-    }
+    if (md5(password) !== user.password) return { message: 'Not Found', code: 404 };
 
-    const jwtConfig = {
-      algorithm: 'HS256',
-    };
+    const jwtConfig = { algorithm: 'HS256' };
 
     const token = jwt.sign({
       data: { email, id: user.dataValues.id },
@@ -28,7 +22,11 @@ const loginService = {
       JWT_SECRET, jwtConfig);
 
     return {
-      name: user.dataValues.name, email: user.dataValues.email, role: user.dataValues.role, token,
+      id: user.dataValues.id,
+      name: user.dataValues.name,
+      email: user.dataValues.email,
+      role: user.dataValues.role,
+      token,
     };
   },
 };

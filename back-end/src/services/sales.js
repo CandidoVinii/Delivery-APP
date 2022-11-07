@@ -8,7 +8,7 @@ const salesService = {
   create: async (data) => {
     const createSale = await sales.create(data);
 
-    return createSale;
+    return createSale.dataValues.id;
   },
 };
 
