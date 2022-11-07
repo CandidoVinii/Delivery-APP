@@ -15,11 +15,20 @@ export default function Login() {
 
   const { setToken } = useContext(Context);
 
+  const userRoute = (role) => {
+    if (role === 'customer') {
+      return history.push('/customer/products');
+    }
+    if (role === 'seller') {
+      return history.push('/seller/orders');
+    }
+  };
+
   useEffect(() => {
     const userData = getLocalStorage('user');
     if (userData) {
+      userRoute(userData.role);
       setToken(userData);
-      history.push('/customer/products');
     }
   }, []);
 
@@ -60,9 +69,9 @@ export default function Login() {
     if (login === errorCode) {
       setMessageError(true);
     } else {
-      setMessageError(false);
       setLocalStorage('user', login);
-      history.push('/customer/products');
+      userRoute(login.role);
+      setMessageError(false);
     }
   };
 
@@ -95,7 +104,7 @@ export default function Login() {
           data-testid="common_login__button-login"
           type="button"
           disabled={ disabledLoginButton }
-          onClick={ () => loginApi() }
+          onClick={ loginApi }
         >
           LOGIN
         </button>
