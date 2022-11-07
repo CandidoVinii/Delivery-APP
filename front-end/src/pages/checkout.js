@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Context from '../context/Context';
-import salesCreate from '../helpers/apiSales';
+import { salesCreate, salesProducts } from '../helpers/apiSales';
 import { getLocalStorage } from '../helpers/localStorage';
 
 export default function Checkout() {
@@ -56,17 +56,25 @@ export default function Checkout() {
   const handleClick = async () => {
     const totalPrice = products
       .reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)
-      .toFixed(2).replace('.', ',');
+      .toFixed(2);
+    console.log(totalPrice);
     const data = {
       userId: Number(token.id),
       sellerId: Number(saller),
-      totalPrice: parseFloat(totalPrice).toFixed(2),
+      totalPrice,
       deliveryAddress: address,
       deliveryNumber: Number(numberAnddress),
       status: 'Pendente',
     };
     const urlPath = await salesCreate(data, token.token);
-
+    products.map(async (item) => {
+      const dataSaleProduct = {
+        saleId: urlPath.id,
+        productId: item.id,
+        quantity: Number(item.quantity),
+      };
+      await salesProducts(dataSaleProduct, token.token);
+    });
     history.push(`/customer/orders/${urlPath.id}`);
   };
 
