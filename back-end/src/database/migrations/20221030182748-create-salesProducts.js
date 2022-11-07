@@ -19,7 +19,7 @@ module.exports = {
           model: "products",
           key: "id",
         },
-        field: "product_id_id",
+        field: "product_id",
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
