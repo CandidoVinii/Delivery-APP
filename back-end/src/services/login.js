@@ -28,7 +28,11 @@ const loginService = {
       JWT_SECRET, jwtConfig);
 
     return {
-      name: user.dataValues.name, email: user.dataValues.email, role: user.dataValues.role, token,
+      id: user.dataValues.id,
+      name: user.dataValues.name,
+      email: user.dataValues.email,
+      role: user.dataValues.role,
+      token,
     };
   },
 };
