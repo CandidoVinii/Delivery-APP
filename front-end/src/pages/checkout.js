@@ -34,7 +34,6 @@ export default function Checkout() {
     const remainingItens = products
       .filter((item) => Number(item.id) !== Number(e.target.id));
     setProducts(remainingItens);
-    console.log(setSallers); // <---- só pro lint não reclamar!
   };
 
   const handleChange = (e) => {
@@ -155,8 +154,8 @@ export default function Checkout() {
             <h2 data-testid="customer_checkout__element-order-total-price">
               TOTAL:
               {' '}
-              { products.reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)
-                .toFixed(2).replace('.', ',') }
+              {products.reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)
+                .toFixed(2).replace('.', ',')}
             </h2>
           </>
         ) : null}
@@ -169,7 +168,7 @@ export default function Checkout() {
             <option>Selecione o Vendedor</option>
             {sallers.map((item, index) => (
               <option value={ item.id } key={ index }>
-                { item.name.toLowerCase() }
+                {item.name.toLowerCase()}
               </option>
             ))}
           </select>
