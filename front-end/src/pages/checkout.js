@@ -21,12 +21,14 @@ export default function Checkout() {
     setProducts(filteredProducts);
   }, []);
 
-  useEffect(async() => {
-    const config = { headers: { authorization: await token.token } };
-    const { data } = await axios('http://localhost:3001/user', config);
-    const result = data.filter((seller) => seller.role === "seller");
-    setSallers(result);
-  })
+  useEffect(() => {
+    (async () => {
+      const config = { headers: { authorization: token.token } };
+      const { data } = await axios('http://localhost:3001/user', config);
+      const result = data.filter((seller) => seller.role === 'seller');
+      setSallers(result);
+    })();
+  }, [token.token]);
 
   const removeProduct = (e) => {
     const remainingItens = products
@@ -37,7 +39,7 @@ export default function Checkout() {
 
   const handleChange = (e) => {
     if (e.target.id === 'seller') {
-      if(e.target.value === 'Selecione o Vendedor') {
+      if (e.target.value === 'Selecione o Vendedor') {
         setSallerId('');
       } else {
         setSallerId(e.target.value);
@@ -52,20 +54,21 @@ export default function Checkout() {
   };
 
   const handleClick = async () => {
-    const totalPrice = products.reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)
-    .toFixed(2).replace('.', ',')
+    const totalPrice = products
+      .reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)
+      .toFixed(2).replace('.', ',');
     const data = {
-      "userId": Number(token.id),
-      "sellerId": Number(saller),
-      "totalPrice": parseFloat(totalPrice).toFixed(2),
-      "deliveryAddress": address,
-      "deliveryNumber": Number(numberAnddress),
-      "status": "Pendente"
-    }
+      userId: Number(token.id),
+      sellerId: Number(saller),
+      totalPrice: parseFloat(totalPrice).toFixed(2),
+      deliveryAddress: address,
+      deliveryNumber: Number(numberAnddress),
+      status: 'Pendente',
+    };
     const urlPath = await salesCreate(data, token.token);
 
-    history.push(`/customer/orders/${urlPath.id}`)
-  }
+    history.push(`/customer/orders/${urlPath.id}`);
+  };
 
   return (
     <>
@@ -144,18 +147,36 @@ export default function Checkout() {
             <h2 data-testid="customer_checkout__element-order-total-price">
               TOTAL:
               {' '}
-              {products.reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)
-                .toFixed(2).replace('.', ',')}
+              { products.reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)
+                .toFixed(2).replace('.', ',') }
             </h2>
           </>
         ) : null}
         <div>
-          <select id='seller' onChange={ handleChange } data-testid="customer_checkout__select-seller">
+          <select
+            id="seller"
+            onChange={ handleChange }
+            data-testid="customer_checkout__select-seller"
+          >
             <option>Selecione o Vendedor</option>
-            {sallers.map((item, index) => <option value={item.id} key={ index }>{item.name.toLowerCase()}</option>)}
+            {sallers.map((item, index) => (
+              <option value={ item.id } key={ index }>
+                { item.name.toLowerCase() }
+              </option>
+            ))}
           </select>
-          <input onChange={ handleChange } id='address' data-testid="customer_checkout__input-address" />
-          <input onChange={ handleChange } id='numberAddress' min={0} type="number" data-testid="customer_checkout__input-address-number" />
+          <input
+            onChange={ handleChange }
+            id="address"
+            data-testid="customer_checkout__input-address"
+          />
+          <input
+            onChange={ handleChange }
+            id="numberAddress"
+            min={ 0 }
+            type="number"
+            data-testid="customer_checkout__input-address-number"
+          />
           <button
             type="button"
             data-testid="customer_checkout__button-submit-order"
