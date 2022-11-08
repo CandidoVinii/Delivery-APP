@@ -20,12 +20,8 @@ export default function Navbar() {
   };
 
   const goToOrder = () => {
-    history.push('/customer/orders')
+    history.push('/customer/orders');
   };
-
-  const goToProducts = () => {
-    history.push('/customer/products')
-  }
 
   return (
     <nav>
@@ -40,8 +36,9 @@ export default function Navbar() {
           )}
         <li>
           <button
-          data-testid="customer_products__element-navbar-link-orders"
-          onClick={ goToOrder }
+            type="button"
+            data-testid="customer_products__element-navbar-link-orders"
+            onClick={ goToOrder }
           >
             pedidos
           </button>

@@ -44,8 +44,8 @@ const getSalesById = async (id, token) => {
   };
 
   return axios(config)
-  .then((response) => response.data)
-  .catch((error) => console.log(error));
-}
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+};
 
 export { salesCreate, salesProducts, getSalesById };

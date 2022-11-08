@@ -15,7 +15,7 @@ const salesController = {
     const sales = await salesService.findAll(id);
 
     return res.status(200).json(sales);
-  }
+  },
 };
 
 module.exports = salesController;

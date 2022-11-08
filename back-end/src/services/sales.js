@@ -16,7 +16,7 @@ const salesService = {
     });
 
     return findSaleId;
-  }
+  },
 };
 
 module.exports = salesService;

@@ -11,15 +11,15 @@ export default function Checkout() {
   // const [user, setUser] = useState();
   const [products, setProducts] = useState([]);
   const [sellers, setsellers] = useState([]);
-  const [seller, setsellerId] = useState('');
+  const [sellerId, setsellerId] = useState('');
   const [address, setAddress] = useState('');
   const [numberAnddress, setNumberAnddress] = useState();
   const history = useHistory();
 
   useEffect(() => {
     const readLocalStorage = getLocalStorage('carrinho');
-  //  const userLocalStorage = getLocalStorage('user');
-  //  setUser(userLocalStorage);
+    //  const userLocalStorage = getLocalStorage('user');
+    //  setUser(userLocalStorage);
     const filteredProducts = readLocalStorage.filter((item) => item.quantity > 0);
     setProducts(filteredProducts);
   }, []);
@@ -63,7 +63,7 @@ export default function Checkout() {
     console.log(totalPrice);
     const data = {
       userId: Number(token.id),
-      sellerId: Number(seller),
+      sellerId: Number(sellerId),
       totalPrice,
       deliveryAddress: address,
       deliveryNumber: Number(numberAnddress),
