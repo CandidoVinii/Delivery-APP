@@ -21,7 +21,7 @@ const salesController = {
     const sales = await salesService.findByPk(id);
 
     return res.status(200).json(sales);
-  }
+  },
 };
 
 module.exports = salesController;
