@@ -17,6 +17,11 @@ const salesService = {
 
     return findSaleId;
   },
+  findByPk: async (id) => {
+    const findSaleId = await sales.findByPk(id);
+
+    return findSaleId;
+  }
 };
 
 module.exports = salesService;
