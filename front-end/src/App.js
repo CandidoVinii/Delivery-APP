@@ -7,6 +7,7 @@ import Products from './pages/products';
 import Checkout from './pages/checkout';
 import Provider from './context/Provider';
 import Orders from './pages/orders';
+import OrderDetails from './pages/orderDetails';
 // import CartProvider from './context/CartProvider';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
           <Route exact path="/register" component={ Register } />
           <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/customer/checkout" component={ Checkout } />
-          <Route exact path="/customer/orders/:id" component={ Orders } />
+          <Route exact path="/customer/orders/:id" component={ OrderDetails } />
           <Route exact path="/customer/orders" component={ Orders } />
           <Route exact path="/seller/orders" component={ Orders } />
         </Provider>

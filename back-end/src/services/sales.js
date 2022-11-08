@@ -1,4 +1,4 @@
-const { sales } = require('../database/models');
+const { sales, user } = require('../database/models');
 
 const salesService = {
   getAll: async () => {
@@ -18,7 +18,13 @@ const salesService = {
     return findSaleId;
   },
   findByPk: async (id) => {
-    const findSaleId = await sales.findByPk(id);
+    const findSaleId = await sales.findByPk(id, {
+      include: 
+        {
+          model: user,
+        }
+      
+    });
 
     return findSaleId;
   },
