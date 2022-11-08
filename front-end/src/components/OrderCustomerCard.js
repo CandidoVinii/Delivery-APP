@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function OrderCustomerCard({ object }) {
   const { id, status, saleDate, totalPrice } = object.order;
   const parsingDate = new Date(saleDate);
-  const formatedDate = parsingDate.toLocaleDateString();
+  const formatedDate = parsingDate.toLocaleDateString('pt-br');
   return (
     <div
       key={ id }
