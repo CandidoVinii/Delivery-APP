@@ -45,7 +45,7 @@ export default function OrderCustomer() {
               <h1
                 data-testid={ `customer_orders__element-card-price-${elem.id}` }
               >
-                { elem.totalPrice }
+                { elem.totalPrice.replace(/\./, ",") }
               </h1>
             </div>
           </Link>
