@@ -61,8 +61,8 @@ export default function Register() {
     if (userCreate === errorCode) {
       setMessageError(true);
     } else {
-      setMessageError(false);
       history.push('/customer/products');
+      setMessageError(false);
       setLocalStorage('user', userCreate);
     }
   };

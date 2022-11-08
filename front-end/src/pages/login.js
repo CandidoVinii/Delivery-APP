@@ -16,7 +16,7 @@ export default function Login() {
   const { setToken } = useContext(Context);
 
   const userRoute = (role) => {
-    if (role === 'customer') {
+    if (role === 'customer' || role === null) {
       return history.push('/customer/products');
     }
     if (role === 'seller') {
