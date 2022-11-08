@@ -4,7 +4,7 @@ import { getSalesById } from '../helpers/apiSales';
 // import Context from '../context/Context';
 import { getLocalStorage } from '../helpers/localStorage';
 
-export default function Order() {
+export default function OrderCustomer() {
   const [order, setOrder] = useState([]);
   const history = useHistory();
   //  const { token } = useContext(Context);
