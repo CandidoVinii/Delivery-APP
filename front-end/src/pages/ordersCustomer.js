@@ -40,7 +40,7 @@ export default function OrderCustomer() {
               <h1
                 data-testid={ `customer_orders__element-order-date-${elem.id}` }
               >
-                { elem.saleDate.replace(/-/g, '/').split('T')[0] }
+                { elem.saleDate.split('T')[0].split('-').reverse().join('/') }
               </h1>
               <h1
                 data-testid={ `customer_orders__element-card-price-${elem.id}` }
