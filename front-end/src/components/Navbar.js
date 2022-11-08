@@ -4,11 +4,13 @@ import { getLocalStorage, removeLocalStorage } from '../helpers/localStorage';
 
 export default function Navbar() {
   const [name, setName] = useState('');
+  const [role, setRole] = useState('');
   const history = useHistory();
 
   useEffect(() => {
     const userData = getLocalStorage('user');
     setName(userData.name);
+    setRole(userData.role);
   }, []);
 
   const logout = () => {
@@ -28,14 +30,14 @@ export default function Navbar() {
   return (
     <nav>
       <ul>
-        <li>
-          <div
-          data-testid="customer_products__element-navbar-link-products"
-          onClick={ goToProducts }
-          >
-            produtos
-          </div>
-        </li>
+        {role === 'customer'
+          && (
+            <li>
+              <div data-testid="customer_products__element-navbar-link-products">
+                produtos
+              </div>
+            </li>
+          )}
         <li>
           <button
           data-testid="customer_products__element-navbar-link-orders"

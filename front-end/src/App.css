@@ -7,6 +7,10 @@ td {
   border: 1px solid black
 }
 
+a {
+  color: #0fa36b;
+}
+
 .App {
   align-items: center;
   background: #0fa36b;

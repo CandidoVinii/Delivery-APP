@@ -158,8 +158,8 @@ export default function Checkout() {
             <h2 data-testid="customer_checkout__element-order-total-price">
               TOTAL:
               {' '}
-              { products.reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)
-                .toFixed(2).replace('.', ',') }
+              {products.reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)
+                .toFixed(2).replace('.', ',')}
             </h2>
           </>
         ) : null}
@@ -172,7 +172,7 @@ export default function Checkout() {
             <option>Selecione o Vendedor</option>
             {sellers.map((item, index) => (
               <option value={ item.id } key={ index }>
-                { item.name.toLowerCase() }
+                {item.name.toLowerCase()}
               </option>
             ))}
           </select>
