@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 export default function OrderCustomerCard({ object }) {
   const { id, status, saleDate, totalPrice } = object.order;
+  const parsingDate = new Date(saleDate);
+  const formatedDate = parsingDate.toLocaleDateString();
   return (
     <div
       key={ id }
@@ -13,10 +15,10 @@ export default function OrderCustomerCard({ object }) {
         {status}
       </h1>
       <h1 data-testid={ `customer_orders__element-order-date-${id}` }>
-        {saleDate.replace(/-/g, '/').split('T')[0]}
+        { formatedDate }
       </h1>
       <h1 data-testid={ `customer_orders__element-card-price-${id}` }>
-        {totalPrice}
+        {totalPrice.replace('.', ',')}
       </h1>
     </div>
   );
