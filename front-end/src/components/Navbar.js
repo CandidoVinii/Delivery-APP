@@ -17,18 +17,32 @@ export default function Navbar() {
     removeLocalStorage('carrinho');
   };
 
+  const goToOrder = () => {
+    history.push('/customer/orders')
+  };
+
+  const goToProducts = () => {
+    history.push('/customer/products')
+  }
+
   return (
     <nav>
       <ul>
         <li>
-          <div data-testid="customer_products__element-navbar-link-products">
+          <div
+          data-testid="customer_products__element-navbar-link-products"
+          onClick={ goToProducts }
+          >
             produtos
           </div>
         </li>
         <li>
-          <div data-testid="customer_products__element-navbar-link-orders">
+          <button
+          data-testid="customer_products__element-navbar-link-orders"
+          onClick={ goToOrder }
+          >
             pedidos
-          </div>
+          </button>
         </li>
         <li>
           <div data-testid="customer_products__element-navbar-user-full-name">

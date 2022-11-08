@@ -8,15 +8,18 @@ import { getLocalStorage } from '../helpers/localStorage';
 
 export default function Checkout() {
   const { token } = useContext(Context);
+  // const [user, setUser] = useState();
   const [products, setProducts] = useState([]);
-  const [sallers, setSallers] = useState([]);
-  const [saller, setSallerId] = useState('');
+  const [sellers, setsellers] = useState([]);
+  const [seller, setsellerId] = useState('');
   const [address, setAddress] = useState('');
   const [numberAnddress, setNumberAnddress] = useState();
   const history = useHistory();
 
   useEffect(() => {
     const readLocalStorage = getLocalStorage('carrinho');
+  //  const userLocalStorage = getLocalStorage('user');
+  //  setUser(userLocalStorage);
     const filteredProducts = readLocalStorage.filter((item) => item.quantity > 0);
     setProducts(filteredProducts);
   }, []);
@@ -26,7 +29,7 @@ export default function Checkout() {
       const config = { headers: { authorization: token.token } };
       const { data } = await axios('http://localhost:3001/user', config);
       const result = data.filter((seller) => seller.role === 'seller');
-      setSallers(result);
+      setsellers(result);
     })();
   }, [token.token]);
 
@@ -34,15 +37,15 @@ export default function Checkout() {
     const remainingItens = products
       .filter((item) => Number(item.id) !== Number(e.target.id));
     setProducts(remainingItens);
-    console.log(setSallers); // <---- só pro lint não reclamar!
+    console.log(setsellers); // <---- só pro lint não reclamar!
   };
 
   const handleChange = (e) => {
     if (e.target.id === 'seller') {
       if (e.target.value === 'Selecione o Vendedor') {
-        setSallerId('');
+        setsellerId('');
       } else {
-        setSallerId(e.target.value);
+        setsellerId(e.target.value);
       }
     }
     if (e.target.id === 'address') {
@@ -60,7 +63,7 @@ export default function Checkout() {
     console.log(totalPrice);
     const data = {
       userId: Number(token.id),
-      sellerId: Number(saller),
+      sellerId: Number(seller),
       totalPrice,
       deliveryAddress: address,
       deliveryNumber: Number(numberAnddress),
@@ -69,7 +72,7 @@ export default function Checkout() {
     const urlPath = await salesCreate(data, token.token);
     products.map(async (item) => {
       const dataSaleProduct = {
-        saleId: urlPath.id,
+        saleId: await urlPath.id,
         productId: item.id,
         quantity: Number(item.quantity),
       };
@@ -167,7 +170,7 @@ export default function Checkout() {
             data-testid="customer_checkout__select-seller"
           >
             <option>Selecione o Vendedor</option>
-            {sallers.map((item, index) => (
+            {sellers.map((item, index) => (
               <option value={ item.id } key={ index }>
                 { item.name.toLowerCase() }
               </option>
