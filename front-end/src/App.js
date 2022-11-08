@@ -6,8 +6,7 @@ import Register from './pages/register';
 import Products from './pages/products';
 import Checkout from './pages/checkout';
 import Provider from './context/Provider';
-import OrderDetail from './pages/orderDetail';
-import OrderCustomer from './pages/ordersCustomer';
+import Orders from './pages/orders';
 // import CartProvider from './context/CartProvider';
 
 function App() {
@@ -22,8 +21,9 @@ function App() {
           <Route exact path="/register" component={ Register } />
           <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/customer/checkout" component={ Checkout } />
-          <Route exact path="/customer/orders/:id" component={ OrderDetail } />
-          <Route exact path="/customer/orders" component={ OrderCustomer } />
+          <Route exact path="/customer/orders/:id" component={ Orders } />
+          <Route exact path="/customer/orders" component={ Orders } />
+          <Route exact path="/seller/orders" component={ Orders } />
         </Provider>
       </Switch>
     </BrowserRouter>
