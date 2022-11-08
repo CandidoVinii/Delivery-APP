@@ -21,8 +21,9 @@ function App() {
           <Route exact path="/register" component={ Register } />
           <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/customer/checkout" component={ Checkout } />
-          <Route path="/customer/orders/" component={ Orders } />
-          <Route path="/seller/orders/" component={ Orders } />
+          <Route exact path="/customer/orders/:id" component={ Orders } />
+          <Route exact path="/customer/orders" component={ Orders } />
+          <Route exact path="/seller/orders" component={ Orders } />
         </Provider>
       </Switch>
     </BrowserRouter>

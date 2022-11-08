@@ -32,4 +32,20 @@ const salesProducts = async (data, token) => {
     .catch((error) => console.log(error));
 };
 
-export { salesCreate, salesProducts };
+const getSalesById = async (id, token) => {
+  // const { id } = data;
+  const config = {
+    method: 'get',
+    url: `http://localhost:3001/sales/${id}`,
+    headers: {
+      Authorization: token,
+      'Content-type': 'apllication/json',
+    },
+  };
+
+  return axios(config)
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+};
+
+export { salesCreate, salesProducts, getSalesById };

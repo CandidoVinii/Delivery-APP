@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function OrderCard({ object }) {
+export default function OrderSellerCard({ object }) {
   const { id, status, saleDate, totalPrice, deliveryAddress,
     deliveryNumber } = object.order;
   return (
@@ -42,6 +42,6 @@ export default function OrderCard({ object }) {
   );
 }
 
-OrderCard.propTypes = {
+OrderSellerCard.propTypes = {
   object: PropTypes.objectOf.isRequired,
 };
