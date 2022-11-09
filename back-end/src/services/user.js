@@ -32,16 +32,21 @@ const userService = {
     return listUsers;
   },
 
-    getById: async (id) => {
-      const user = await users.findOne({
-        where: { id },
-        attributes: { exclude: 'password' },
-      });
-      return user;
+  getById: async (id) => {
+    const user = await users.findOne({
+      where: { id },
+      attributes: { exclude: 'password' },
+    });
+    return user;
 
-      // Outra forma de desenvolver usando o findByPk
-      // const user = await User.findByPk(id, { attributes: { exclude: 'password' } });
-    },
+    // Outra forma de desenvolver usando o findByPk
+    // const user = await User.findByPk(id, { attributes: { exclude: 'password' } });
+  },
+  delete: async (id) => {
+    // service para apagar o usuario através do id
+    const user = await users.destroy({ where: { id } });
+    return user;
+  },
 };
 
 module.exports = userService;
