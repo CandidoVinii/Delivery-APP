@@ -8,6 +8,7 @@ import Checkout from './pages/checkout';
 import Provider from './context/Provider';
 import Orders from './pages/orders';
 import OrderDetails from './pages/orderDetails';
+import SellerOrderDetails from './pages/sellerOrderDetail';
 // import CartProvider from './context/CartProvider';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/customer/checkout" component={ Checkout } />
           <Route exact path="/customer/orders/:id" component={ OrderDetails } />
           <Route exact path="/customer/orders" component={ Orders } />
+          <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
           <Route exact path="/seller/orders" component={ Orders } />
         </Provider>
       </Switch>
