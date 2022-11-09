@@ -1,19 +1,65 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import { getSalesDetails } from '../helpers/apiSales';
 import { getLocalStorage } from '../helpers/localStorage';
 
 export default function OrderDetails() {
   const [details, setDetails] = useState({});
+
   useEffect(() => {
-    const userData = getLocalStorage('user');
-    const userDataDetails = getSalesDetails(1, userData.token);
-    setDetails(userDataDetails);
+    (async () => {
+      const userData = getLocalStorage('user');
+      console.log(userData);
+      const userDataDetails = await getSalesDetails(1, userData.token);
+      console.log(userDataDetails);
+      setDetails(userDataDetails);
+    })();
   }, []);
+
+  const { id } = details;
   return (
     <>
       <Navbar />
-      <table>
+      <div>
+        PEDIDO
+        {' '}
+        <span
+          data-testid="customer_order_details__element-order-details-label-order-id"
+        >
+          {' '}
+          {id}
+        </span>
+      </div>
+      <div>
+        P. Vend:
+        {' '}
+        <span
+          data-testid="customer_order_details__element-order-details-label-seller-name"
+        >
+          {' '}
+          {details.seller.name}
+        </span>
+      </div>
+      {/* <div
+        data-testid="customer_order_details__element-order-details-label-order-date"
+      >
+        {details.saleDate}
+      </div>
+      <div
+        data-testid={
+          `customer_order_details__element-order-details-label-delivery-status-
+          ${details.id}`
+        }
+      >
+        {details.status.toUpperCase()}
+      </div>
+      <button
+        type="button"
+        data-testid="customer_order_details__button-delivery-check"
+      >
+        MARCAR COMO ENTREGUE
+      </button> */}
+      {/* <table>
         <thead>
           <tr>
             <th>Item</th>
@@ -67,8 +113,7 @@ export default function OrderDetails() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </>
-
   );
 }
