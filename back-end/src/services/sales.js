@@ -1,4 +1,4 @@
-const { sales, user } = require('../database/models');
+const { sales, users, products } = require('../database/models');
 
 const salesService = {
   getAll: async () => {
@@ -19,11 +19,22 @@ const salesService = {
   },
   findByPk: async (id) => {
     const findSaleId = await sales.findByPk(id, {
-      include: 
-        {
-          model: user,
-        }
-      
+      include: [{
+        model: users,
+        as: 'seller',
+        attributes: {
+          exclude: ['id', 'email', 'password', 'role']
+        },
+      },
+         {
+          model: products,
+          as: 'products',
+          attributes: {
+            exclude: ['id', 'urlImage']
+          },
+          through: { attributes: ['quantity'] }
+        },
+      ],
     });
 
     return findSaleId;
