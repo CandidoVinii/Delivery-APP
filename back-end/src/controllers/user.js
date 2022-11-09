@@ -13,10 +13,10 @@ const userController = {
       .json({ name: token.name, email: token.email, role: null, token: token.token });
   },
 
-getAll: async (_req, res) => {
-  const users = await userService.getAll();
-  return res.status(200).json(users);
-},
+  getAll: async (_req, res) => {
+    const users = await userService.getAll();
+    return res.status(200).json(users);
+  },
 
   getById: async (req, res) => {
     const { id } = req.params;
@@ -24,6 +24,13 @@ getAll: async (_req, res) => {
     if (!user) return res.status(404).json({ message: 'User does not exist' });
 
     return res.status(200).json(user);
+  },
+
+  deleteUser: async (req, res) => {
+    // controller para deletar usuário puxando o id pelo params
+    const { id } = req.params;
+    await userService.delete(id);
+    return res.status(204).end();
   },
 };
 
