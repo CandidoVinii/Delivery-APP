@@ -23,20 +23,17 @@ const salesService = {
         model: users,
         as: 'seller',
         attributes: {
-          exclude: ['id', 'email', 'password', 'role']
+          exclude: ['id', 'email', 'password', 'role'],
         },
       },
          {
           model: products,
           as: 'products',
-          attributes: {
-            exclude: ['id', 'urlImage']
-          },
-          through: { attributes: ['quantity'] }
+          attributes: { exclude: ['id', 'urlImage'] },
+          through: { attributes: ['quantity'] },
         },
       ],
     });
-
     return findSaleId;
   },
 };

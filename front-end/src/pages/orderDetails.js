@@ -14,8 +14,8 @@ export default function OrderDetails(props) {
     deliveryAddress: '',
     deliveryNumber: '',
     saleDate: '',
-    products: [],
-    seller: {},
+    products: [], // *** FONTE: https://stackoverflow.com/a/71677602/18172843
+    seller: {}, // ***
     status: '',
   });
 
