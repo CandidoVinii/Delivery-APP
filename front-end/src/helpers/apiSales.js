@@ -63,5 +63,10 @@ const getSalesDetails = async (id, token) => {
     .then((response) => response.data)
     .catch((error) => console.log(error));
 };
+const updateSalesStatus = async (id, status, token) => {
+  axios.patch(`http://localhost:3001/sales/${id}`, { status }, { headers: { Authorization: token } })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+};
 
-export { salesCreate, salesProducts, getSalesById, getSalesDetails };
+export { salesCreate, salesProducts, getSalesById, getSalesDetails, updateSalesStatus };
