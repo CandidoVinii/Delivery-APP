@@ -21,6 +21,9 @@ export default function OrderDetails(props) {
   const [details, setDetails] = useState({});
   const [delivered, setDelivered] = useState(true);
   const ENTREGUE = 'Entregue';
+  const PENDENTE = 'Pendente';
+  const PREPARANDO = 'Preparando';
+  const EM_TRANSITO = 'Em Trânsito';
   const ORDER_ID = 'customer_order_details__element-order-details-label-order-id';
   const SELLER_NAME = 'customer_order_details__element-order-details-label-seller-name';
   const ORDER_DATE = 'customer_order_details__element-order-details-label-order-date';
@@ -32,6 +35,17 @@ export default function OrderDetails(props) {
       setDetails(orderDetails);
     })();
   }, [id]);
+
+  useEffect(() => {
+    if (details.status === PENDENTE
+      && details.status === PREPARANDO
+      && details.status === ENTREGUE) {
+      setDelivered(true);
+    }
+    if (details.status === EM_TRANSITO) {
+      setDelivered(false);
+    }
+  }, [details.status]);
 
   const updateStatus = async (status) => {
     const userData = getLocalStorage('user');
