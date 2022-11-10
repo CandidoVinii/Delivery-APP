@@ -19,7 +19,7 @@ export default function SellerOrderDetails(props) {
   //   status: '',
   // });
   const [details, setDetails] = useState({});
-  const [pending, setPending] = useState(false);
+  const [pending, setPending] = useState(true);
   const [delivery, setDelivery] = useState(true);
   const PENDENTE = 'Pendente';
   const PREPARANDO = 'Preparando';
@@ -33,6 +33,28 @@ export default function SellerOrderDetails(props) {
       setDetails(orderDetails);
     })();
   }, [id]);
+
+  useEffect(() => {
+    if (details.status === PREPARANDO
+        && details.status === EM_TRANSITO
+        && details.status === ENTREGUE) {
+      setPending(true);
+    }
+    if (details.status === PENDENTE) {
+      setPending(false);
+    }
+  }, [details.status]);
+
+  useEffect(() => {
+    if (details.status === PENDENTE
+      && details.status === EM_TRANSITO
+      && details.status === ENTREGUE) {
+      setDelivery(true);
+    }
+    if (details.status === PREPARANDO) {
+      setDelivery(false);
+    }
+  }, [details.status]);
 
   const updateStatus = async (status) => {
     const userData = getLocalStorage('user');
