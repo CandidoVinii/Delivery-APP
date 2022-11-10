@@ -20,7 +20,12 @@ export default function Navbar() {
   };
 
   const goToOrder = () => {
-    history.push('/customer/orders');
+    if (role === 'customer') {
+      history.push('/customer/orders');
+    }
+    if (role === 'seller') {
+      history.push('/seller/orders');
+    }
   };
 
   return (
