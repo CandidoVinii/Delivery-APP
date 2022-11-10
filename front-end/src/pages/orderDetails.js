@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Navbar from '../components/Navbar';
-import { getSalesDetails } from '../helpers/apiSales';
+import { getSalesDetails, updateSalesStatus } from '../helpers/apiSales';
 import { getLocalStorage } from '../helpers/localStorage';
 
 export default function OrderDetails(props) {
@@ -19,6 +19,8 @@ export default function OrderDetails(props) {
     status: '',
   });
 
+  const [delivered, setDelivered] = useState(true);
+
   useEffect(() => {
     (async () => {
       const userData = getLocalStorage('user');
@@ -26,6 +28,22 @@ export default function OrderDetails(props) {
       setDetails(orderDetails);
     })();
   }, []);
+
+  const updateStatus = async (status) => {
+    const userData = getLocalStorage('user');
+    await updateSalesStatus(id, status, userData.token);
+    setDetails((prevState) => (
+      { ...prevState, status }));
+  };
+
+  const handleStatus = () => {
+    if (details.status !== 'Entregue') {
+      setDelivered(true);
+      setDetails((prevState) => (
+        { ...prevState, status: 'Entregue' }));
+      updateStatus('Entregue');
+    }
+  };
 
   return (
     <>
@@ -68,7 +86,8 @@ export default function OrderDetails(props) {
       <button
         type="button"
         data-testid="customer_order_details__button-delivery-check"
-        disabled
+        onClick={ handleStatus }
+        disabled={ delivered }
       >
         MARCAR COMO ENTREGUE
       </button>
