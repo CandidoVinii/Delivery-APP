@@ -36,6 +36,13 @@ const salesService = {
     });
     return findSaleId;
   },
+  updateStatus: async (id, data) => {
+ await sales.update({ status: data },
+  {
+      where: { id },
+      
+  });
+  },
 };
 
 module.exports = salesService;

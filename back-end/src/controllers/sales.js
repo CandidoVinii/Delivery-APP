@@ -22,6 +22,13 @@ const salesController = {
 
     return res.status(200).json(sales);
   },
+  updateStatus: async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+    const updateSalesStatus = await salesService.updateStatus(id, status);
+
+    return res.status(200).json(updateSalesStatus);
+  },
 };
 
 module.exports = salesController;
