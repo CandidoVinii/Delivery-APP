@@ -8,6 +8,7 @@ import Checkout from './pages/checkout';
 import Provider from './context/Provider';
 import Orders from './pages/orders';
 import OrderDetails from './pages/orderDetails';
+import SellerOrderDetails from './pages/sellerOrderDetail';
 import AdmManager from './pages/AdmManager';
 import SellerOrderDetails from './pages/sellerOrderDetail';;
 // import CartProvider from './context/CartProvider';

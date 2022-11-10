@@ -6,19 +6,19 @@ import { getSalesDetails, updateSalesStatus } from '../helpers/apiSales';
 
 export default function SellerOrderDetails(props) {
   const { match: { params: { id } } } = props;
-  const [details, setDetails] = useState({
-    id: 0,
-    userId: 0,
-    sellerId: 0,
-    totalPrice: '',
-    deliveryAddress: '',
-    deliveryNumber: '',
-    saleDate: '',
-    products: [], // *** FONTE: https://stackoverflow.com/a/71677602/18172843
-    seller: {}, // ***
-    status: '',
-  });
-  // const [details, setDetails] = useState({});
+  // const [details, setDetails] = useState({
+  //   id: 0,
+  //   userId: 0,
+  //   sellerId: 0,
+  //   totalPrice: '',
+  //   deliveryAddress: '',
+  //   deliveryNumber: '',
+  //   saleDate: '',
+  //   products: [], // *** FONTE: https://stackoverflow.com/a/71677602/18172843
+  //   seller: {}, // ***
+  //   status: '',
+  // });
+  const [details, setDetails] = useState({});
   const [pending, setPending] = useState(false);
   const [delivery, setDelivery] = useState(true);
   const PENDENTE = 'Pendente';
