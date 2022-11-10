@@ -22,6 +22,9 @@ export default function Login() {
     if (role === 'seller') {
       return history.push('/seller/orders');
     }
+    if (role === 'administrator') {
+      return history.push('/admin/manage');
+    }
   };
 
   useEffect(() => {
