@@ -7,7 +7,6 @@ const salesController = {
   },
   createSale: async (req, res) => {
     const sales = await salesService.create(req.body);
-
     return res.status(201).json({ id: sales });
   },
   findAll: async (req, res) => {
